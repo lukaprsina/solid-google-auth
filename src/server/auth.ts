@@ -1,5 +1,5 @@
 import { Authenticator } from "@solid-auth/core";
-import { DiscordStrategy } from "@solid-auth/socials";
+import { GoogleStrategy } from "@solid-auth/socials";
 import { serverEnv } from "~/env/server";
 import { sessionStorage } from "~/utils/auth";
 
@@ -12,19 +12,22 @@ export type User = {
 const users: User[] = [];
 
 export const authenticator = new Authenticator<User>(sessionStorage).use(
-  new DiscordStrategy(
+  new GoogleStrategy(
     {
-      clientID: serverEnv.DISCORD_CLIENT_ID,
-      clientSecret: serverEnv.DISCORD_CLIENT_SECRET,
-      callbackURL: serverEnv.SITE_URL + "/api/auth/discord/callback",
+      clientID: serverEnv.CLIENT_ID_GOOGLE,
+      clientSecret: serverEnv.CLIENT_SECRET_GOOGLE,
+      callbackURL: serverEnv.SITE_URL + "/api/auth/google/callback",
     },
-    async ({ profile }) => {
-      let user = users.find((u) => u.id === profile.id);
+    async (user_config) => {
+      let user = users.find((u) => u.id === user_config.profile.id);
+
+      console.log(user_config)
+
       if (!user) {
         user = {
-          id: profile.id,
-          displayName: profile.__json.username,
-          avatar: profile.photos[0].value,
+          id: user_config.profile.id,
+          displayName: user_config.profile.displayName,
+          avatar: user_config.profile.photos[0].value,
         };
         users.push(user);
       }

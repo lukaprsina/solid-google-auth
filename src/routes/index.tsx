@@ -33,14 +33,14 @@ const Home: ParentComponent = () => {
           fallback={
             <button
               onClick={() =>
-                authClient.login("discord", {
+                authClient.login("google", {
                   successRedirect: "/",
                   failureRedirect: "/",
                 })
               }
               class="bg-purple-700 mx-3 my-3 rounded-lg w-56 p-2.5 text-white font-bold flex items-center justify-center"
             >
-              Login with discord
+              Login with google
             </button>
           }
         >
