@@ -1,7 +1,7 @@
 import type { Component } from "solid-js";
 
-const Home: Component = () => {
+const Failure: Component = () => {
     return <p>Auth didn't work</p>
 }
 
-export default Home;
+export default Failure;

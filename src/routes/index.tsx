@@ -34,7 +34,7 @@ const Home: ParentComponent = () => {
             <button
               onClick={() =>
                 authClient.login("google", {
-                  successRedirect: "/",
+                  successRedirect: "/success",
                   failureRedirect: "/failure",
                 })
               }
