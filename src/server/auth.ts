@@ -17,6 +17,7 @@ export const authenticator = new Authenticator<User>(sessionStorage).use(
       clientID: serverEnv.CLIENT_ID_GOOGLE,
       clientSecret: serverEnv.CLIENT_SECRET_GOOGLE,
       callbackURL: serverEnv.SITE_URL + "/api/auth/google/callback",
+      scope: ["email", "openid", "profile"]
     },
     async (user_config) => {
       let user = users.find((u) => u.id === user_config.profile.id);

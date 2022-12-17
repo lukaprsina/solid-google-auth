@@ -35,7 +35,7 @@ const Home: ParentComponent = () => {
               onClick={() =>
                 authClient.login("google", {
                   successRedirect: "/",
-                  failureRedirect: "/",
+                  failureRedirect: "/failure",
                 })
               }
               class="bg-purple-700 mx-3 my-3 rounded-lg w-56 p-2.5 text-white font-bold flex items-center justify-center"
